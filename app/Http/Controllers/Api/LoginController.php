@@ -7,8 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Api\LoginController;
-
 class LoginController extends Controller
 {
     public function login(Request $request)
@@ -44,4 +44,28 @@ class LoginController extends Controller
         $user->password = $hashedPassword;
         $user->save();
     }
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('github')->user();
+        dd($user);
+    }
+
+    public function redirectToProviderGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleProviderCallbackGoogle()
+    {
+        $user = Socialite::driver('google')->user();
+        dd($user);
+    }
+
+
 }
