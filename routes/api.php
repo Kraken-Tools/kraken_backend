@@ -5,4 +5,4 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 
-Route::get('/savetoken', [UserController::class, 'save_token']);
+Route::post('/savetoken', [UserController::class, 'save_token']);
