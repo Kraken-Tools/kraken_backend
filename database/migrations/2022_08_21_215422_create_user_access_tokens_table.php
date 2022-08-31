@@ -15,7 +15,7 @@ class CreateUserAccessTokensTable extends Migration
     {
         Schema::create('user_access_tokens', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('provider_name');
             $table->foreignId('user_id')
                   ->references('id')
                   ->on('users')
