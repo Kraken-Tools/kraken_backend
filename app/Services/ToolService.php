@@ -24,4 +24,24 @@ class ToolService {
 
         return implode(" ", $number_in_units);
     }
+
+    public static function callSpellCheckerApi($text)
+    {
+        $curl = curl_init();
+
+        $post_parameters = json_encode([
+            'key' => env('SPELL_CHECKER_API_KEY'),
+            'text' => $text,
+            'language' => 'pt-BR'
+        ]);
+
+        curl_setopt($curl, CURLOPT_URL, 'https://api.textgears.com/spelling');
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $post_parameters);
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+
+        return $response;
+    }
 }

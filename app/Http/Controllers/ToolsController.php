@@ -17,4 +17,11 @@ class ToolsController extends Controller
 
         return response()->json(['result' => $number_in_full]);
     }
+
+    public function spellChecker(Request $request)
+    {
+        $text = ToolService::callSpellCheckerApi($request->input('text'));
+
+        return response()->json(['response' => $text]);
+    }
 }
