@@ -15,5 +15,5 @@ Route::prefix('auth')->group(function() {
 });
 
 Route::prefix('tools')->group(function() {
-    Route::get('/number-in-full/{number?}', [ToolsController::class, 'numberInFull'])->middleware('auth:sanctum');
+    Route::get('/number-in-full/{number?}', [ToolsController::class, 'numberInFull']);
 });
